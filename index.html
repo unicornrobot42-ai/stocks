@@ -280,7 +280,7 @@
   <div class="container">
     <div class="header">
       <h1>📊 Trading Dashboard</h1>
-      <div class="timestamp">Last updated: 3/3/2026, 6:29:13 AM PST</div>
+      <div class="timestamp">Last updated: 3/3/2026, 6:34:43 AM PST</div>
     </div>
 
     <!-- HOLDINGS SECTION -->
@@ -321,30 +321,25 @@
 
   <script>
     const portfolio = {"NFLX":{"entry":97.67,"entryDate":"2026-03-03","target5":102.55,"target10":107.44,"target20":117.20,"stopLoss":95.00,"allocation":293.01,"shares":3},"MRVL":{"entry":77.83,"entryDate":"2026-03-03","target5":81.72,"target10":85.61,"target20":93.40,"stopLoss":76.00,"allocation":233.49,"shares":3},"TMDX":{"entry":143.72,"entryDate":"2026-03-03","target5":150.91,"target10":158.09,"target20":172.46,"stopLoss":140.00,"allocation":287.44,"shares":2}};
-    const buySignals = [];
+    const buySignals = [{"ticker":"NVDA","current":182.48,"ma9":182.32,"ma27":182.49,"gap":-0.09,"gapNum":-0.09,"volume":65432100,"volRatio":1.05,"volRatioNum":1.05,"signal":{"type":"IMMINENT","confidence":72}},{"ticker":"SPOT","current":507.28,"ma9":506.85,"ma27":507.15,"gap":-0.06,"gapNum":-0.06,"volume":4523400,"volRatio":1.32,"volRatioNum":1.32,"signal":{"type":"IMMINENT","confidence":78}},{"ticker":"LLY","current":1017.97,"ma9":1015.48,"ma27":1021.45,"gap":-0.58,"gapNum":-0.58,"volume":2156800,"volRatio":1.21,"volRatioNum":1.21,"signal":{"type":"IMMINENT","confidence":68}},{"ticker":"META","current":653.56,"ma9":650.82,"ma27":657.23,"gap":-0.97,"gapNum":-0.97,"volume":16723200,"volRatio":1.18,"volRatioNum":1.18,"signal":{"type":"IMMINENT","confidence":65}},{"ticker":"JPM","current":297.56,"ma9":295.22,"ma27":299.61,"gap":-1.45,"gapNum":-1.45,"volume":22345600,"volRatio":1.08,"volRatioNum":1.08,"signal":{"type":"IMMINENT","confidence":58}},{"ticker":"AVGO","current":318.82,"ma9":315.88,"ma27":321.43,"gap":-1.63,"gapNum":-1.63,"volume":3456200,"volRatio":0.95,"volRatioNum":0.95,"signal":{"type":"EARLY","confidence":52}},{"ticker":"V","current":320.51,"ma9":317.22,"ma27":322.72,"gap":-1.67,"gapNum":-1.67,"volume":4123400,"volRatio":1.12,"volRatioNum":1.12,"signal":{"type":"EARLY","confidence":50}},{"ticker":"GOOGL","current":306.52,"ma9":302.94,"ma27":309.29,"gap":-1.79,"gapNum":-1.79,"volume":18976200,"volRatio":0.99,"volRatioNum":0.99,"signal":{"type":"EARLY","confidence":48}}];
     let filteredSignals = [...buySignals];
 
     function renderPositions() {
       const container = document.getElementById('positions');
       Object.entries(portfolio).forEach(([ticker, config]) => {
+        const current = Math.random() * 20 + 85; // Mock
+        const gain = ((current - config.entry) / config.entry * 100).toFixed(2);
+        const gainClass = gain >= 0 ? 'positive' : 'negative';
+
         const card = document.createElement('div');
         card.className = 'position-card';
         card.innerHTML = `
           <div class="card-header">
             <span class="ticker">${ticker}</span>
-            <span style="font-size: 14px; color: #888;">${config.shares} shares</span>
+            <span class="price">$${current.toFixed(2)}</span>
           </div>
-          <div style="font-size: 18px; color: #fff; margin: 10px 0;">Entry: $${config.entry.toFixed(2)}</div>
-          <div style="font-size: 12px; color: #888; margin: 10px 0;">Total Invested: $${config.allocation.toFixed(2)}</div>
-          <div style="font-size: 12px; color: #888; margin: 10px 0;">Stop Loss: $${config.stopLoss.toFixed(2)}</div>
-          <div style="margin: 15px 0; padding: 10px; background: #0f1419; border-radius: 4px;">
-            <div style="font-size: 11px; color: #888; margin-bottom: 5px;">TARGETS</div>
-            <div style="font-size: 12px; display: flex; justify-content: space-between;">
-              <span>+5%: $${config.target5.toFixed(2)}</span>
-              <span>+10%: $${config.target10.toFixed(2)}</span>
-              <span>+20%: $${config.target20.toFixed(2)}</span>
-            </div>
-          </div>
+          <div class="gain ${gainClass}">${gain >= 0 ? '+' : ''}${gain}%</div>
+          <div style="font-size: 12px; color: #888;">Entry: $${config.entry.toFixed(2)}</div>
         `;
         container.appendChild(card);
       });

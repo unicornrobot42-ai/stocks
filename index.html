@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Trading Dashboard - Positions & Screener</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -35,6 +36,8 @@
     .value { font-weight: bold; color: #e0e0e0; }
     .positive { color: #4ade80; }
     .negative { color: #f87171; }
+    .chart-container { height: 180px; margin-top: 15px; padding: 10px; background: rgba(15, 20, 25, 0.6); border-radius: 6px; position: relative; }
+    .chart-label { font-size: 11px; color: #888; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
   </style>
 </head>
 <body>
@@ -101,9 +104,11 @@
 
     function renderHoldings() {
       const container = document.getElementById('holdings');
+      let chartIndex = 0;
       Object.entries(portfolio).forEach(([ticker, config]) => {
         const card = document.createElement('div');
         card.className = 'card';
+        const canvasId = `chart-${ticker}`;
         card.innerHTML = `
           <div class="ticker">${ticker}</div>
           <div class="metric">Entry: <span class="value">$${config.entry.toFixed(2)}</span></div>
@@ -116,8 +121,82 @@
             <div class="metric">+10%: <span class="value">$${config.target10.toFixed(2)}</span></div>
             <div class="metric">+20%: <span class="value">$${config.target20.toFixed(2)}</span></div>
           </div>
+          <div class="chart-label">MA9 vs MA27 (30 days)</div>
+          <div class="chart-container">
+            <canvas id="${canvasId}"></canvas>
+          </div>
         `;
         container.appendChild(card);
+      });
+    }
+
+    function renderCharts() {
+      // Mock 30-day price data for demo
+      const priceData = {
+        'NFLX': { ma9: [92, 93, 94, 95, 96, 97, 98, 98, 99, 99, 99.5, 99.8, 100, 100.5, 100.8, 101, 101, 101, 100.5, 100, 99.5, 99, 98.5, 98, 97.5, 97.5, 97.8, 98, 98.2, 97.67], ma27: [91, 91.5, 92, 92.5, 93, 93.5, 94, 94.5, 95, 95.5, 96, 96.5, 97, 97.2, 97.4, 97.6, 97.8, 98, 98.1, 98.1, 98, 97.9, 97.8, 97.7, 97.6, 97.5, 97.4, 97.3, 97.2, 97.1] },
+        'MRVL': { ma9: [75, 75.5, 76, 76.5, 77, 77.5, 78, 78.5, 79, 79.5, 80, 80.2, 80.4, 80.6, 80.8, 81, 81.2, 81.5, 81.8, 82, 82.5, 83, 83.2, 82.8, 82.5, 82, 81.5, 81, 80.5, 77.83], ma27: [76, 76.2, 76.4, 76.6, 76.8, 77, 77.2, 77.4, 77.6, 77.8, 78, 78.1, 78.2, 78.3, 78.4, 78.5, 78.6, 78.7, 78.8, 78.9, 79, 79.1, 79.2, 79.3, 79.4, 79.5, 79.6, 79.7, 79.8, 79.9] },
+        'TMDX': { ma9: [138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 148.5, 148.8, 149, 149.2, 149.5, 149.8, 150, 150.2, 150.5, 150.8, 151, 150.8, 150.5, 150, 149.5, 149, 148.5, 148, 143.72], ma27: [134, 135, 136, 137, 137.5, 138, 138.5, 139, 139.5, 140, 140.5, 140.8, 141, 141.2, 141.4, 141.6, 141.8, 142, 142.1, 142.2, 142.3, 142.4, 142.5, 142.6, 142.7, 142.8, 142.9, 143, 143.1, 143.2] }
+      };
+
+      const labels = Array.from({length: 30}, (_, i) => i === 29 ? 'Today' : i === 28 ? '-1' : i === 0 ? '-29' : '');
+
+      Object.keys(portfolio).forEach(ticker => {
+        const canvasId = `chart-${ticker}`;
+        const canvas = document.getElementById(canvasId);
+        if (!canvas) return;
+
+        const ctx = canvas.getContext('2d');
+        new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: labels,
+            datasets: [
+              {
+                label: 'MA9',
+                data: priceData[ticker].ma9,
+                borderColor: '#4da6ff',
+                backgroundColor: 'rgba(77, 166, 255, 0.1)',
+                borderWidth: 2,
+                fill: true,
+                tension: 0.3,
+                pointRadius: 0,
+                pointHoverRadius: 4
+              },
+              {
+                label: 'MA27',
+                data: priceData[ticker].ma27,
+                borderColor: '#888',
+                borderWidth: 1,
+                fill: false,
+                tension: 0.3,
+                pointRadius: 0,
+                borderDash: [5, 5]
+              }
+            ]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            interaction: { mode: 'index', intersect: false },
+            plugins: {
+              legend: {
+                display: true,
+                position: 'top',
+                labels: { font: { size: 10 }, color: '#888' }
+              }
+            },
+            scales: {
+              y: {
+                ticks: { font: { size: 9 }, color: '#666' },
+                grid: { color: 'rgba(68, 98, 122, 0.1)' }
+              },
+              x: {
+                ticks: { font: { size: 9 }, color: '#666' },
+                grid: { display: false }
+              }
+            }
+          }
+        });
       });
     }
 
@@ -141,6 +220,7 @@
 
     renderHoldings();
     renderScreener();
+    setTimeout(() => renderCharts(), 100); // Wait for DOM to render canvases
   </script>
 </body>
 </html>

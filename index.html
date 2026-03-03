@@ -320,26 +320,31 @@
   </div>
 
   <script>
-    const portfolio = {"NFLX":{"entry":97.09,"entryDate":"2026-03-03","target5":102,"target10":107,"target20":116,"stopLoss":89.3,"allocation":450},"MRVL":{"entry":80.86,"entryDate":"2026-03-03","target5":85,"target10":89,"target20":97,"stopLoss":74.4,"allocation":350},"TMDX":{"entry":147.00,"entryDate":"2026-03-03","target5":154,"target10":162,"target20":176,"stopLoss":136,"allocation":200}};
+    const portfolio = {"NFLX":{"entry":97.67,"entryDate":"2026-03-03","target5":102.55,"target10":107.44,"target20":117.20,"stopLoss":95.00,"allocation":293.01,"shares":3},"MRVL":{"entry":77.83,"entryDate":"2026-03-03","target5":81.72,"target10":85.61,"target20":93.40,"stopLoss":76.00,"allocation":233.49,"shares":3},"TMDX":{"entry":143.72,"entryDate":"2026-03-03","target5":150.91,"target10":158.09,"target20":172.46,"stopLoss":140.00,"allocation":287.44,"shares":2}};
     const buySignals = [];
     let filteredSignals = [...buySignals];
 
     function renderPositions() {
       const container = document.getElementById('positions');
       Object.entries(portfolio).forEach(([ticker, config]) => {
-        const current = Math.random() * 20 + 85; // Mock
-        const gain = ((current - config.entry) / config.entry * 100).toFixed(2);
-        const gainClass = gain >= 0 ? 'positive' : 'negative';
-
         const card = document.createElement('div');
         card.className = 'position-card';
         card.innerHTML = `
           <div class="card-header">
             <span class="ticker">${ticker}</span>
-            <span class="price">$${current.toFixed(2)}</span>
+            <span style="font-size: 14px; color: #888;">${config.shares} shares</span>
           </div>
-          <div class="gain ${gainClass}">${gain >= 0 ? '+' : ''}${gain}%</div>
-          <div style="font-size: 12px; color: #888;">Entry: $${config.entry.toFixed(2)}</div>
+          <div style="font-size: 18px; color: #fff; margin: 10px 0;">Entry: $${config.entry.toFixed(2)}</div>
+          <div style="font-size: 12px; color: #888; margin: 10px 0;">Total Invested: $${config.allocation.toFixed(2)}</div>
+          <div style="font-size: 12px; color: #888; margin: 10px 0;">Stop Loss: $${config.stopLoss.toFixed(2)}</div>
+          <div style="margin: 15px 0; padding: 10px; background: #0f1419; border-radius: 4px;">
+            <div style="font-size: 11px; color: #888; margin-bottom: 5px;">TARGETS</div>
+            <div style="font-size: 12px; display: flex; justify-content: space-between;">
+              <span>+5%: $${config.target5.toFixed(2)}</span>
+              <span>+10%: $${config.target10.toFixed(2)}</span>
+              <span>+20%: $${config.target20.toFixed(2)}</span>
+            </div>
+          </div>
         `;
         container.appendChild(card);
       });

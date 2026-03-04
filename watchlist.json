@@ -1,12 +1,164 @@
 {
   "hot": [
     {
-      "ticker": "PLTR",
-      "price": 147.22,
-      "gap": -4.11,
-      "volume": 1.05,
-      "status": "imminent",
-      "added": "2026-03-04T15:09:10"
+      "ticker": "CDNS",
+      "price": 305.43,
+      "ema9": 299.48,
+      "ema27": 299.21,
+      "gap": 0.09,
+      "status": "FRESH"
+    },
+    {
+      "ticker": "META",
+      "price": 667.73,
+      "ema9": 654.98,
+      "ema27": 656.16,
+      "gap": -0.18,
+      "status": "IMMINENT"
+    },
+    {
+      "ticker": "ROKU",
+      "price": 97.51,
+      "ema9": 94.05,
+      "ema27": 94.41,
+      "gap": -0.38,
+      "status": "IMMINENT"
+    },
+    {
+      "ticker": "CSCO",
+      "price": 80.87,
+      "ema9": 79.37,
+      "ema27": 79.04,
+      "gap": 0.41,
+      "status": "FRESH"
+    },
+    {
+      "ticker": "V",
+      "price": 320.47,
+      "ema9": 318.68,
+      "ema27": 322.49,
+      "gap": -1.18,
+      "status": "IMMINENT"
+    },
+    {
+      "ticker": "UBER",
+      "price": 76.65,
+      "ema9": 74.87,
+      "ema27": 75.8,
+      "gap": -1.23,
+      "status": "IMMINENT"
+    },
+    {
+      "ticker": "COIN",
+      "price": 208.93,
+      "ema9": 182.69,
+      "ema27": 185.2,
+      "gap": -1.35,
+      "status": "IMMINENT"
+    },
+    {
+      "ticker": "MA",
+      "price": 522.92,
+      "ema9": 519.29,
+      "ema27": 527.48,
+      "gap": -1.55,
+      "status": "IMMINENT"
+    },
+    {
+      "ticker": "SPOT",
+      "price": 534.09,
+      "ema9": 495.48,
+      "ema27": 480.11,
+      "gap": 3.2,
+      "status": "FRESH"
+    },
+    {
+      "ticker": "PYPL",
+      "price": 46.75,
+      "ema9": 45.62,
+      "ema27": 45.35,
+      "gap": 0.59,
+      "status": "FRESH"
+    },
+    {
+      "ticker": "AMZN",
+      "price": 216.82,
+      "ema9": 209.6,
+      "ema27": 217.41,
+      "gap": -3.59,
+      "status": "IMMINENT"
+    },
+    {
+      "ticker": "SHOP",
+      "price": 129.65,
+      "ema9": 122.03,
+      "ema27": 123.01,
+      "gap": -0.8,
+      "status": "IMMINENT"
+    },
+    {
+      "ticker": "ADBE",
+      "price": 273.12,
+      "ema9": 260.52,
+      "ema27": 270.82,
+      "gap": -3.8,
+      "status": "IMMINENT"
+    },
+    {
+      "ticker": "CRM",
+      "price": 193.08,
+      "ema9": 190.76,
+      "ema27": 197.11,
+      "gap": -3.22,
+      "status": "IMMINENT"
+    },
+    {
+      "ticker": "DASH",
+      "price": 147.71,
+      "ema9": 140.55,
+      "ema27": 147.39,
+      "gap": -4.62,
+      "status": "IMMINENT"
+    },
+    {
+      "ticker": "CRWD",
+      "price": 185.63,
+      "ema9": 173.96,
+      "ema27": 182.89,
+      "gap": -4.87,
+      "status": "IMMINENT"
+    },
+    {
+      "ticker": "NVDA",
+      "price": 183.04,
+      "ema9": 184.4,
+      "ema27": 185.59,
+      "gap": -0.64,
+      "status": "IMMINENT"
+    },
+    {
+      "ticker": "MRVL",
+      "price": 78.09,
+      "ema9": 79.22,
+      "ema27": 79.98,
+      "gap": -0.94,
+      "status": "IMMINENT"
+    },
+    {
+      "ticker": "INTC",
+      "price": 45.58,
+      "ema9": 45.28,
+      "ema27": 45.72,
+      "gap": -0.94,
+      "status": "IMMINENT"
+    },
+    {
+      "ticker": "LRCX",
+      "price": 222.99,
+      "ema9": 231.39,
+      "ema27": 228.84,
+      "gap": 1.12,
+      "status": "FRESH"
     }
   ],
   "cool": []

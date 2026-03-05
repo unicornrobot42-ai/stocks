@@ -98,6 +98,19 @@
         .catch(e => console.log('Error:', e));
     }
     
+    function calculateEMA(prices, period) {
+      const ema = [];
+      const k = 2 / (period + 1);
+      let sma = prices.slice(0, period).reduce((a, b) => a + b) / period;
+      ema[period - 1] = sma;
+      
+      for (let i = period; i < prices.length; i++) {
+        sma = prices[i] * k + sma * (1 - k);
+        ema[i] = sma;
+      }
+      return ema;
+    }
+    
     function renderChart(ticker) {
       const data = PRICE_DATA[ticker];
       if (!data) return;
@@ -107,27 +120,57 @@
       
       const ctx = canvas.getContext('2d');
       const isUp = data.prices[data.prices.length - 1] >= data.prices[0];
-      const color = isUp ? '#4ade80' : '#f87171';
-      const bg = isUp ? 'rgba(74, 222, 128, 0.1)' : 'rgba(248, 113, 113, 0.1)';
+      const priceColor = isUp ? '#4ade80' : '#f87171';
+      const priceBg = isUp ? 'rgba(74, 222, 128, 0.1)' : 'rgba(248, 113, 113, 0.1)';
+      
+      // Calculate EMAs
+      const ema9 = calculateEMA(data.prices, 9);
+      const ema27 = calculateEMA(data.prices, 27);
       
       new Chart(ctx, {
         type: 'line',
         data: {
           labels: data.labels,
-          datasets: [{
-            data: data.prices,
-            borderColor: color,
-            backgroundColor: bg,
-            borderWidth: 2,
-            tension: 0.3,
-            fill: true,
-            pointRadius: 0
-          }]
+          datasets: [
+            {
+              label: 'Price',
+              data: data.prices,
+              borderColor: priceColor,
+              backgroundColor: priceBg,
+              borderWidth: 2.5,
+              tension: 0.3,
+              fill: true,
+              pointRadius: 0
+            },
+            {
+              label: 'EMA9',
+              data: ema9,
+              borderColor: '#60a5fa',
+              borderWidth: 1.5,
+              tension: 0.3,
+              fill: false,
+              pointRadius: 0
+            },
+            {
+              label: 'EMA27',
+              data: ema27,
+              borderColor: '#f59e0b',
+              borderWidth: 1.5,
+              tension: 0.3,
+              fill: false,
+              pointRadius: 0
+            }
+          ]
         },
         options: {
           responsive: true,
           maintainAspectRatio: false,
-          plugins: { legend: { display: false } },
+          plugins: { 
+            legend: { 
+              display: true,
+              labels: { color: '#999', font: { size: 11 } }
+            } 
+          },
           scales: {
             y: { beginAtZero: false, grid: { color: '#1f2937' }, ticks: { color: '#666' } },
             x: { grid: { display: false }, ticks: { color: '#666' } }

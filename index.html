@@ -17,6 +17,76 @@
     .header h1 { font-size: 32px; margin-bottom: 8px; color: #fff; }
     .timestamp { color: #888; font-size: 14px; }
     
+    /* HOLDINGS AT A GLANCE */
+    .holdings-glance {
+      background: #1a1f2e;
+      border: 1px solid #333;
+      border-radius: 8px;
+      padding: 25px;
+      margin-bottom: 30px;
+    }
+    
+    .holdings-title {
+      color: #aaa;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      margin-bottom: 15px;
+    }
+    
+    .holdings-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 15px;
+    }
+    
+    .holding-item {
+      background: #0f1419;
+      border-radius: 6px;
+      padding: 15px;
+      text-align: center;
+      border: 2px solid transparent;
+      transition: all 0.3s ease;
+    }
+    
+    .holding-item.positive {
+      border-color: #4ade80;
+      background: rgba(74, 222, 128, 0.05);
+    }
+    
+    .holding-item.negative {
+      border-color: #f87171;
+      background: rgba(248, 113, 113, 0.05);
+    }
+    
+    .holding-ticker {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: #4da6ff;
+    }
+    
+    .holding-gain {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    
+    .holding-gain.positive { color: #4ade80; }
+    .holding-gain.negative { color: #f87171; }
+    
+    .holding-price {
+      font-size: 12px;
+      color: #888;
+    }
+    
+    @media (max-width: 768px) {
+      .holdings-grid { grid-template-columns: repeat(auto-fit, minmax(90px, 1fr)); gap: 10px; }
+      .holding-item { padding: 12px; }
+      .holding-ticker { font-size: 14px; }
+      .holding-gain { font-size: 18px; }
+    }
+    
     .summary-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -113,6 +183,13 @@
       <div class="timestamp" id="timestamp">Last updated: loading...</div>
     </div>
     
+    <!-- HOLDINGS AT A GLANCE -->
+    <div class="holdings-glance">
+      <div class="holdings-title">📈 Current Holdings</div>
+      <div class="holdings-grid" id="holdingsGlance"></div>
+    </div>
+    
+    <!-- PORTFOLIO SUMMARY -->
     <div class="summary-grid" id="summary">
       <div class="summary-card">
         <div class="summary-label">Total Invested</div>
@@ -132,6 +209,7 @@
       </div>
     </div>
     
+    <!-- DETAILED POSITIONS -->
     <div class="grid" id="positions"></div>
   </div>
 
@@ -154,6 +232,7 @@
     function renderDashboard() {
       let totalInvested = 0, totalCurrent = 0;
       const positionsHtml = [];
+      const holdingsGlanceHtml = [];
 
       holdings.forEach(h => {
         const invested = h.entry * h.shares;
@@ -171,6 +250,16 @@
         const emoji = gain >= 0 ? '🟢' : '🔴';
         const callStr = h.type === 'call' ? `<div class="call-indicator">CALL ${h.strike}</div>` : '';
 
+        // HOLDINGS AT A GLANCE
+        holdingsGlanceHtml.push(`
+          <div class="holding-item ${gainClass}">
+            <div class="holding-ticker">${h.ticker}</div>
+            <div class="holding-gain ${gainClass}">${gainSign}${gainPct.toFixed(1)}%</div>
+            <div class="holding-price">${formatCurrency(h.current)}</div>
+          </div>
+        `);
+
+        // DETAILED CARD
         positionsHtml.push(`
           <div class="card">
             <div class="card-header">
@@ -215,6 +304,7 @@
       const totalGain = totalCurrent - totalInvested;
       const totalPct = (totalGain / totalInvested) * 100;
 
+      document.getElementById('holdingsGlance').innerHTML = holdingsGlanceHtml.join('');
       document.getElementById('positions').innerHTML = positionsHtml.join('');
       document.getElementById('totalInvested').textContent = formatCurrency(totalInvested);
       document.getElementById('totalCurrent').textContent = formatCurrency(totalCurrent);

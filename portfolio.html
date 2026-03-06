@@ -103,11 +103,15 @@
     }
     
     @media (max-width: 768px) {
-      .holdings-grid { grid-template-columns: repeat(auto-fit, minmax(90px, 1fr)); gap: 10px; }
-      .holding-item { padding: 12px; }
-      .holding-ticker { font-size: 14px; }
-      .holding-gain { font-size: 18px; }
-      .nav { flex-wrap: wrap; }
+      .holdings-grid { grid-template-columns: repeat(auto-fit, minmax(85px, 1fr)); gap: 10px; }
+      .holding-item { padding: 12px; border-radius: 4px; }
+      .holding-ticker { font-size: 13px; margin-bottom: 6px; }
+      .holding-gain { font-size: 16px; margin-bottom: 2px; }
+      .holding-price { font-size: 10px; }
+      .nav { flex-wrap: wrap; gap: 8px; }
+      .nav-btn { flex: 1; padding: 8px 12px; font-size: 12px; }
+      .holdings-glance { padding: 15px; margin-bottom: 20px; }
+      .holdings-title { font-size: 10px; margin-bottom: 12px; }
     }
     
     .summary-grid {
@@ -137,12 +141,24 @@
     }
     
     @media (max-width: 768px) {
-      .grid { grid-template-columns: 1fr; gap: 15px; }
-      .summary-grid { gap: 15px; }
-      body { padding: 15px; }
-      .header h1 { font-size: 24px; }
-      .summary-card { padding: 15px; }
-      .summary-value { font-size: 20px; }
+      .grid { grid-template-columns: 1fr; gap: 12px; }
+      .summary-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+      body { padding: 12px; }
+      .header { margin-bottom: 20px; }
+      .header h1 { font-size: 24px; margin-bottom: 6px; }
+      .timestamp { font-size: 11px; }
+      .summary-card { padding: 12px; }
+      .summary-label { font-size: 10px; }
+      .summary-value { font-size: 18px; margin-top: 4px; }
+      .card { padding: 15px; }
+      .card-header { margin-bottom: 12px; padding-bottom: 10px; }
+      .ticker { font-size: 16px; }
+      .price { font-size: 18px; }
+      .stats { gap: 8px; margin: 12px 0; }
+      .stat-label { font-size: 9px; }
+      .stat-value { font-size: 12px; margin-top: 2px; }
+      .gain { font-size: 14px; padding: 10px; margin: 12px 0; }
+      .action { font-size: 11px; padding: 8px; }
     }
     
     .card {

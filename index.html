@@ -25,6 +25,25 @@
     .positive { color: #4ade80; }
     .negative { color: #f87171; }
     .chart-container { position: relative; height: 280px; }
+    .nav {
+      margin-bottom: 30px;
+      display: flex;
+      gap: 15px;
+    }
+    .nav-btn {
+      padding: 10px 20px;
+      border-radius: 6px;
+      background: #1a1f2e;
+      color: #4da6ff;
+      border: 1px solid #333;
+      cursor: pointer;
+      font-weight: 500;
+      text-decoration: none;
+    }
+    .nav-btn.active {
+      background: #4da6ff;
+      color: #000;
+    }
   </style>
 </head>
 <body>
@@ -33,6 +52,12 @@
       <h1>📊 Trading Dashboard</h1>
       <div class="timestamp" id="timestamp">Loading...</div>
     </div>
+    
+    <div class="nav">
+      <a href="index.html" class="nav-btn active">📊 Watchlist (Charts)</a>
+      <a href="portfolio.html" class="nav-btn">💼 Current Holdings</a>
+    </div>
+    
     <div class="grid" id="stocks-grid">Loading stocks...</div>
   </div>
 

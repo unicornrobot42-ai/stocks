@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Watchlist Dashboard — Hot/Cool Prospects</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, monospace;
+            background: #0a0e27;
+            color: #e0e6ed;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            font-size: 28px;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        .timestamp {
+            color: #888;
+            font-size: 13px;
+            margin-bottom: 24px;
+        }
+        
+        .section {
+            margin-bottom: 32px;
+        }
+        
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #333;
+        }
+        
+        .hot .section-title {
+            color: #ff6b35;
+            border-color: #ff6b35;
+        }
+        
+        .cool .section-title {
+            color: #6b7280;
+            border-color: #6b7280;
+        }
+        
+        .prospect-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 16px;
+        }
+        
+        .prospect-card {
+            background: #0f1629;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 16px;
+            transition: all 0.2s ease;
+        }
+        
+        .hot .prospect-card {
+            border-color: #ff6b35;
+            background: rgba(255, 107, 53, 0.05);
+        }
+        
+        .cool .prospect-card {
+            border-color: #6b7280;
+            background: rgba(107, 114, 128, 0.05);
+        }
+        
+        .prospect-card:hover {
+            transform: translateY(-2px);
+        }
+        
+        .ticker {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        
+        .hot .ticker {
+            color: #ff6b35;
+        }
+        
+        .cool .ticker {
+            color: #999;
+        }
+        
+        .stat {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            margin: 6px 0;
+            color: #aaa;
+        }
+        
+        .stat-value {
+            font-weight: 600;
+            color: #e0e6ed;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 4px 8px;
+            border-radius: 4px;
+            margin-top: 8px;
+            text-transform: uppercase;
+        }
+        
+        .status-imminent {
+            background: #ff6b35;
+            color: #fff;
+        }
+        
+        .status-fresh {
+            background: #4ade80;
+            color: #000;
+        }
+        
+        .empty {
+            color: #666;
+            padding: 16px;
+            text-align: center;
+            font-size: 14px;
+        }
+        
+        .footer {
+            text-align: center;
+            color: #666;
+            font-size: 12px;
+            margin-top: 48px;
+            padding-top: 16px;
+            border-top: 1px solid #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📊 Stock Watchlist Dashboard</h1>
+        <div class="timestamp" id="timestamp"></div>
+        
+        <!-- HOT PROSPECTS -->
+        <div class="section hot">
+            <div class="section-title">🔥 HOT PROSPECTS</div>
+            <div class="prospect-grid" id="hot-grid">
+                <div class="empty">Loading...</div>
+            </div>
+        </div>
+        
+        <!-- COOL (ARCHIVED) -->
+        <div class="section cool">
+            <div class="section-title">❄️ ARCHIVED (Cool)</div>
+            <div class="prospect-grid" id="cool-grid">
+                <div class="empty">No archived prospects</div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            Auto-updated daily at 6:00 AM PST | Hot prospects stay visible | Cool prospects auto-removed
+        </div>
+    </div>
+    
+    <script>
+        // Alpaca API Configuration
+        const API_KEY = 'PKNHLLZVDFKWSJ4REY4MZMCAUU';
+        const SECRET_KEY = '8C8pYwF3r631Szfm8koNqyM9gCgdpgnBa2LQBXu8GR9K';
+        const BASE_URL = 'https://paper-api.alpaca.markets/v2';
+        
+        let watchlist = {
+            "hot": [],
+            "cool": []
+        };
+        
+        // Fetch positions from Alpaca API
+        async function fetchPositions() {
+            try {
+                const headers = {
+                    'APCA-API-KEY-ID': API_KEY,
+                    'APCA-API-SECRET-KEY': SECRET_KEY,
+                    'Content-Type': 'application/json'
+                };
+                
+                const response = await fetch(`${BASE_URL}/positions`, { headers });
+                if (!response.ok) throw new Error(`Failed to fetch positions: ${response.status}`);
+                
+                const positions = await response.json();
+                
+                // Convert positions to watchlist format
+                watchlist.hot = positions.map(pos => ({
+                    ticker: pos.symbol,
+                    price: parseFloat(pos.current_price),
+                    quantity: parseInt(pos.qty),
+                    avgFillPrice: parseFloat(pos.avg_fill_price),
+                    unrealizedPL: parseFloat(pos.unrealized_pl),
+                    unrealizedPLPC: parseFloat(pos.unrealized_plpc) * 100,
+                    marketValue: parseFloat(pos.market_value),
+                    status: 'active',
+                    added: new Date().toISOString()
+                }));
+                
+                renderProspects();
+            } catch (error) {
+                console.error('Error fetching positions:', error);
+                document.getElementById('hot-grid').innerHTML = `<div class="empty">Error loading positions: ${error.message}</div>`;
+            }
+        }
+        
+        function renderProspects() {
+            const now = new Date();
+            document.getElementById('timestamp').textContent = `Last updated: ${now.toLocaleString('en-US', {
+                weekday: 'short',
+                month: 'short',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                timeZone: 'America/Los_Angeles'
+            })} PST`;
+            
+            // Hot prospects (positions)
+            const hotGrid = document.getElementById('hot-grid');
+            if (watchlist.hot.length > 0) {
+                hotGrid.innerHTML = watchlist.hot.map(p => `
+                    <div class="prospect-card">
+                        <div class="ticker">${p.ticker}</div>
+                        <div class="stat">
+                            <span>Qty</span>
+                            <span class="stat-value">${p.quantity}</span>
+                        </div>
+                        <div class="stat">
+                            <span>Current Price</span>
+                            <span class="stat-value">$${p.price.toFixed(2)}</span>
+                        </div>
+                        <div class="stat">
+                            <span>Avg Fill</span>
+                            <span class="stat-value">$${p.avgFillPrice.toFixed(2)}</span>
+                        </div>
+                        <div class="stat">
+                            <span>Unrealized P&L</span>
+                            <span class="stat-value" style="color: ${p.unrealizedPL > 0 ? '#4ade80' : '#f87171'}">$${p.unrealizedPL.toFixed(2)}</span>
+                        </div>
+                        <div class="stat">
+                            <span>Return %</span>
+                            <span class="stat-value" style="color: ${p.unrealizedPLPC > 0 ? '#4ade80' : '#f87171'}">${p.unrealizedPLPC > 0 ? '+' : ''}${p.unrealizedPLPC.toFixed(2)}%</span>
+                        </div>
+                        <div class="stat">
+                            <span>Market Value</span>
+                            <span class="stat-value">$${p.marketValue.toFixed(2)}</span>
+                        </div>
+                        <span class="status-badge status-fresh">Live</span>
+                    </div>
+                `).join('');
+            } else {
+                hotGrid.innerHTML = '<div class="empty">No open positions</div>';
+            }
+            
+            // Cool prospects (archived)
+            const coolGrid = document.getElementById('cool-grid');
+            if (watchlist.cool.length > 0) {
+                coolGrid.innerHTML = watchlist.cool.map(p => `
+                    <div class="prospect-card">
+                        <div class="ticker">${p.ticker}</div>
+                        <div class="stat">
+                            <span>Price</span>
+                            <span class="stat-value">$${p.price.toFixed(2)}</span>
+                        </div>
+                        <span class="status-badge status-fresh">archived</span>
+                    </div>
+                `).join('');
+            }
+        }
+        
+        // Initial load and auto-refresh every 30 seconds
+        fetchPositions();
+        setInterval(fetchPositions, 30000);
+    </script>
+</body>
+</html>

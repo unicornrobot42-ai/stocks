@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stock Trading Dashboard</title>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>Stock Trading Dashboard - 20260306104514</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -16,60 +19,72 @@
         .container { max-width: 1200px; margin: 0 auto; }
         h1 { font-size: 28px; margin-bottom: 8px; font-weight: 600; }
         .timestamp { color: #888; font-size: 13px; margin-bottom: 24px; }
-        table th, table td { padding: 10px; }
-        table tr:hover { background: rgba(255,255,255,0.05); }
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        .stat-card {
+            background: #0f1629;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #333;
+        }
+        .stat-label { color: #888; font-size: 12px; }
+        .stat-value { font-size: 24px; font-weight: bold; color: #60a5fa; margin-top: 8px; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #333; }
+        th { background: #0f1629; font-weight: 600; color: #60a5fa; }
+        tr:hover { background: rgba(255,255,255,0.05); }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>📊 Stock Trading Dashboard</h1>
-        <div class="timestamp">Live data from Alpaca API</div>
+        <div class="timestamp">Live from Alpaca API | Updated: 2026-03-06 10:45:14 PST</div>
         
-        <div style="margin-bottom: 30px;">
-            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-bottom: 30px;">
-                <div style="background: #0f1629; padding: 15px; border-radius: 8px; border: 1px solid #333;">
-                    <div style="color: #888; font-size: 12px;">Portfolio Value</div>
-                    <div style="font-size: 20px; font-weight: bold; color: #60a5fa;">$100000.00</div>
-                </div>
-                <div style="background: #0f1629; padding: 15px; border-radius: 8px; border: 1px solid #333;">
-                    <div style="color: #888; font-size: 12px;">Cash Available</div>
-                    <div style="font-size: 20px; font-weight: bold; color: #60a5fa;">$100000.00</div>
-                </div>
-                <div style="background: #0f1629; padding: 15px; border-radius: 8px; border: 1px solid #333;">
-                    <div style="color: #888; font-size: 12px;">Buying Power</div>
-                    <div style="font-size: 20px; font-weight: bold; color: #60a5fa;">$200000.00</div>
-                </div>
-                <div style="background: #0f1629; padding: 15px; border-radius: 8px; border: 1px solid #333;">
-                    <div style="color: #888; font-size: 12px;">Positions</div>
-                    <div style="font-size: 20px; font-weight: bold; color: #60a5fa;">0</div>
-                </div>
+        <div class="stat-grid">
+            <div class="stat-card">
+                <div class="stat-label">Portfolio Value</div>
+                <div class="stat-value">$100000.00</div>
             </div>
-            
-            <h3 style="margin-bottom: 15px;">Open Positions</h3>
-            <table style="width: 100%; border-collapse: collapse;">
-                <thead>
-                    <tr style="background: #0f1629; border-bottom: 2px solid #333;">
-                        <th style="padding: 10px; text-align: left;">Ticker</th>
-                        <th style="padding: 10px; text-align: left;">Qty</th>
-                        <th style="padding: 10px; text-align: left;">Avg Fill</th>
-                        <th style="padding: 10px; text-align: left;">Current</th>
-                        <th style="padding: 10px; text-align: left;">P&L ($)</th>
-                        <th style="padding: 10px; text-align: left;">P&L (%)</th>
-                        <th style="padding: 10px; text-align: left;">Market Value</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td colspan="7" style="text-align:center; color:#999;">No open positions</td></tr>
-                </tbody>
-            </table>
-            
-            <div style="margin-top: 20px; color: #888; font-size: 12px;">
-                Last updated: 2026-03-06 10:39:46 PST<br>
-                Account: PA3WDMWLVOFP<br>
-                Status: ACTIVE
+            <div class="stat-card">
+                <div class="stat-label">Cash Available</div>
+                <div class="stat-value">$100000.00</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Buying Power</div>
+                <div class="stat-value">$200000.00</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Positions</div>
+                <div class="stat-value">0</div>
             </div>
         </div>
         
+        <h3 style="margin-bottom: 15px;">Open Positions</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Ticker</th>
+                    <th>Qty</th>
+                    <th>Avg Fill</th>
+                    <th>Current</th>
+                    <th>P&L ($)</th>
+                    <th>P&L (%)</th>
+                    <th>Market Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td colspan="7" style="text-align:center; color:#999;">No open positions</td></tr>
+            </tbody>
+        </table>
+        
+        <div style="margin-top: 20px; color: #888; font-size: 12px;">
+            <div>Account: PA3WDMWLVOFP | Status: ACTIVE</div>
+            <div>Cache buster: 20260306104514</div>
+        </div>
     </div>
 </body>
 </html>

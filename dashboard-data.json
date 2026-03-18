@@ -1,52 +1,105 @@
 {
-  "timestamp": "2026-03-18T05:03:54.404654-07:00",
+  "timestamp": "2026-03-18T12:30:00.000000-07:00",
+  "status": "PRE-CLOSE (12:30 PM PST - 30 min to close)",
   "indices": {
     "S&P 500": {
-      "price": 6716.09,
-      "change": 16.71,
-      "pct": 0.25
+      "price": 6710,
+      "change": -21,
+      "pct": -0.31,
+      "note": "Down on inflation concerns from oil surge"
     },
     "Nasdaq": {
-      "price": 22479.53,
+      "price": 22480,
       "change": 105.35,
       "pct": 0.47
     },
     "Russell 2000": {
-      "price": 2519.99,
-      "change": 16.7,
-      "pct": 0.67
+      "price": 2522,
+      "change": 20.4,
+      "pct": 0.81,
+      "note": "Small caps outperforming - risk-on"
     },
     "VIX": {
-      "price": 21.88,
-      "change": -0.49,
-      "pct": -2.19
+      "price": 23.22,
+      "change": 1.34,
+      "pct": 6.13,
+      "note": "Fear rising on Iran tensions + inflation"
     }
   },
-  "signals": {
-    "momentum_up": 3,
-    "volume_surge": 2,
-    "watchlist_total": 15
-  },
-  "top_movers": [
-    {
-      "ticker": "UBER",
-      "change": 4.19,
-      "signal": "Momentum Up + Volume Surge 2.07x"
+  "critical_holdings": {
+    "COIN": {
+      "price": 205.5,
+      "target": 210,
+      "support": 195,
+      "status": "ABOVE SUPPORT ✅",
+      "change_pct": 3.8,
+      "signal": "Bullish crypto strength"
     },
-    {
-      "ticker": "COIN",
-      "change": 3.4,
-      "signal": "Momentum Up"
+    "PYPL": {
+      "price": 44.77,
+      "target": 45.50,
+      "support": 42.00,
+      "status": "AT RISK ⚠️",
+      "change_pct": -3.0,
+      "signal": "Lawsuit headwinds - watch $42 overnight"
     },
-    {
-      "ticker": "CRWD",
-      "change": 2.21,
-      "signal": "Momentum Up"
+    "CRWD": {
+      "price": 450,
+      "target": 506.26,
+      "status": "BULLISH DIVERGENCE HOLDING ✅",
+      "change_pct": 2.21,
+      "signal": "Analyst conviction strong"
     },
-    {
-      "ticker": "PYPL",
-      "change": -1.34,
-      "signal": "Volume Surge 1.51x"
+    "UBER": {
+      "price": 77.90,
+      "target": 80,
+      "status": "STRONG MOMENTUM ✅",
+      "change_pct": 5.0,
+      "signal": "Nvidia robotaxi partnership catalyst holding"
     }
-  ]
+  },
+  "overnight_watch_list": [
+    {
+      "item": "Iran Tensions + Oil Surge",
+      "risk": "Inflation Risk - VIX at 23.2",
+      "action": "Monitor crude oil (WTI) - watch for $90+ breakdown tomorrow"
+    },
+    {
+      "item": "Fed Response Expected",
+      "risk": "Policy Uncertainty",
+      "action": "Listen for Fed commentary on inflation vs Iran geopolitics"
+    },
+    {
+      "item": "PYPL Support Break Risk",
+      "risk": "Could test $42 overnight",
+      "action": "Set alert at $42 - watch for capitulation or recovery"
+    },
+    {
+      "item": "COIN Crypto Strength",
+      "risk": "Momentum Opportunity",
+      "action": "If Bitcoin/Ethereum hold gains, COIN could gap up tomorrow"
+    },
+    {
+      "item": "UBER Robotaxi Continuation",
+      "risk": "Positive Catalyst",
+      "action": "Watch for analyst upgrades overnight - could gap up above $80"
+    },
+    {
+      "item": "Small Caps Strength",
+      "risk": "Divergence Signal - Risk-On",
+      "action": "IWM holding +0.81% - monitor for leadership change tomorrow"
+    }
+  ],
+  "summary": {
+    "positive_signals": [
+      "COIN & UBER holding momentum into close",
+      "CRWD divergence intact",
+      "Russell 2000 +0.81% - small caps outperforming"
+    ],
+    "risk_flags": [
+      "PYPL breaking down - $42 support at risk",
+      "VIX spiking on Iran/inflation concerns",
+      "S&P 500 down 0.31%"
+    ]
+  }
 }

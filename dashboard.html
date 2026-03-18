@@ -18,6 +18,8 @@
         }
         .container { max-width: 1200px; margin: 0 auto; }
         h1 { font-size: 28px; margin-bottom: 8px; font-weight: 600; }
+        h3 { font-size: 18px; margin-top: 24px; margin-bottom: 12px; font-weight: 600; }
+        h4 { font-size: 14px; margin-bottom: 8px; font-weight: 600; }
         .timestamp { color: #888; font-size: 13px; margin-bottom: 24px; }
         .stat-grid {
             display: grid;
@@ -33,55 +35,95 @@
         }
         .stat-label { color: #888; font-size: 12px; }
         .stat-value { font-size: 24px; font-weight: bold; color: #60a5fa; margin-top: 8px; }
-        table { width: 100%; border-collapse: collapse; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
         th, td { padding: 12px; text-align: left; border-bottom: 1px solid #333; }
         th { background: #0f1629; font-weight: 600; color: #60a5fa; }
         tr:hover { background: rgba(255,255,255,0.05); }
+        .summary-box { 
+            margin-top: 30px; 
+            padding: 15px; 
+            background: #0f1629; 
+            border-left: 3px solid #60a5fa; 
+            border-radius: 4px;
+        }
+        .summary-box ul { list-style: none; margin-left: 0; }
+        .summary-box li { margin-bottom: 8px; }
+        ul { margin-left: 20px; }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>📊 Stock Trading Dashboard</h1>
-        <div class="timestamp">Live from Alpaca API | Updated: 2026-03-06 10:45:14 PST</div>
+        <h1>📊 Stock Trading Dashboard - PRE-CLOSE (12:30 PM PST)</h1>
+        <div class="timestamp">Updated: 2026-03-18 12:30 PST | 30 minutes to market close</div>
         
         <div class="stat-grid">
             <div class="stat-card">
-                <div class="stat-label">Portfolio Value</div>
-                <div class="stat-value">$100000.00</div>
+                <div class="stat-label">S&P 500</div>
+                <div class="stat-value">6,710 <span style="color: #ef5350; font-size: 16px;">-0.31%</span></div>
             </div>
             <div class="stat-card">
-                <div class="stat-label">Cash Available</div>
-                <div class="stat-value">$100000.00</div>
+                <div class="stat-label">Nasdaq</div>
+                <div class="stat-value">22,480 <span style="color: #66bb6a; font-size: 16px;">+0.47%</span></div>
             </div>
             <div class="stat-card">
-                <div class="stat-label">Buying Power</div>
-                <div class="stat-value">$200000.00</div>
+                <div class="stat-label">Russell 2000</div>
+                <div class="stat-value">2,522 <span style="color: #66bb6a; font-size: 16px;">+0.81%</span></div>
             </div>
             <div class="stat-card">
-                <div class="stat-label">Positions</div>
-                <div class="stat-value">0</div>
+                <div class="stat-label">VIX (Fear)</div>
+                <div class="stat-value">23.2 <span style="color: #ef5350; font-size: 16px;">+4.0%</span></div>
             </div>
         </div>
-        
-        <h3 style="margin-bottom: 15px;">Open Positions</h3>
+
+        <h3>CRITICAL HOLDINGS - PRE-CLOSE CHECK</h3>
         <table>
             <thead>
                 <tr>
                     <th>Ticker</th>
-                    <th>Qty</th>
-                    <th>Avg Fill</th>
-                    <th>Current</th>
-                    <th>P&L ($)</th>
-                    <th>P&L (%)</th>
-                    <th>Market Value</th>
+                    <th>Current Price</th>
+                    <th>Target/Support</th>
+                    <th>Status</th>
+                    <th>Change (Today)</th>
+                    <th>Signal</th>
                 </tr>
             </thead>
             <tbody>
-                <tr><td colspan="7" style="text-align:center; color:#999;">No open positions</td></tr>
+                <tr style="background: rgba(102, 187, 106, 0.1);">
+                    <td><strong>COIN</strong> (Coinbase)</td>
+                    <td>$201-210</td>
+                    <td>$195 Support</td>
+                    <td style="color: #66bb6a;">✅ HOLDING</td>
+                    <td style="color: #66bb6a;">+3.8%</td>
+                    <td>Bullish on crypto strength; above support</td>
+                </tr>
+                <tr style="background: rgba(239, 83, 80, 0.1);">
+                    <td><strong>PYPL</strong> (PayPal)</td>
+                    <td>$44.77</td>
+                    <td>$42.00 Support</td>
+                    <td style="color: #ffa726;">⚠️ AT RISK</td>
+                    <td style="color: #ef5350;">-3.0%</td>
+                    <td>Lawsuit headwinds; weak momentum - watch $42</td>
+                </tr>
+                <tr style="background: rgba(102, 187, 106, 0.1);">
+                    <td><strong>CRWD</strong> (CrowdStrike)</td>
+                    <td>~$450</td>
+                    <td>Target: $506.26</td>
+                    <td style="color: #66bb6a;">✅ HOLDING</td>
+                    <td style="color: #66bb6a;">+2.21%</td>
+                    <td>Bullish divergence intact; analyst conviction strong</td>
+                </tr>
+                <tr style="background: rgba(102, 187, 106, 0.1);">
+                    <td><strong>UBER</strong> (Uber Tech)</td>
+                    <td>$77.90+</td>
+                    <td>$80 Target</td>
+                    <td style="color: #66bb6a;">✅ STRONG</td>
+                    <td style="color: #66bb6a;">+5.0%+</td>
+                    <td>Nvidia robotaxi partnership momentum holding into close</td>
+                </tr>
             </tbody>
         </table>
-        
-        <h3 style="margin-top: 30px; margin-bottom: 15px;">📋 OVERNIGHT WATCH LIST (Tomorrow)</h3>
+
+        <h3>📋 OVERNIGHT WATCH LIST (Tomorrow)</h3>
         <table>
             <thead>
                 <tr>
@@ -118,27 +160,28 @@
                 </tr>
                 <tr>
                     <td><strong>Small Caps Strength (Russell 2000)</strong></td>
-                    <td>🟢 Divergence Signal</td>
-                    <td>IWM holding +0.81% - risk-on sentiment still present despite VIX spike</td>
+                    <td>🟢 Divergence Signal - Risk-On</td>
+                    <td>IWM holding +0.81% - monitor for leadership change tomorrow</td>
                 </tr>
             </tbody>
         </table>
 
-        <div style="margin-top: 30px; padding: 15px; background: #0f1629; border-left: 3px solid #60a5fa; border-radius: 4px;">
-            <h4 style="color: #60a5fa; margin-bottom: 10px;">📊 SUMMARY</h4>
-            <ul style="list-style: none;">
-                <li>✅ <strong>COIN</strong> & <strong>UBER</strong> holding momentum into close - bullish signals intact</li>
-                <li>⚠️ <strong>PYPL</strong> breaking down - watch $42 support overnight</li>
-                <li>✅ <strong>CRWD</strong> divergence holding - solid conviction</li>
-                <li>🔴 <strong>Market Risk:</strong> Iran tensions pushing crude higher, VIX up 4%, inflation concerns dominate</li>
-                <li>🟢 <strong>Small Caps Leading:</strong> Russell 2000 outperforming S&P 500 - risk appetite still present</li>
+        <div class="summary-box">
+            <h4>📊 PRE-CLOSE SUMMARY</h4>
+            <ul>
+                <li>✅ <strong>COIN ($205.50)</strong> - Above $195 support | Bullish crypto strength continues</li>
+                <li>⚠️ <strong>PYPL ($44.77)</strong> - At risk of testing $42 support overnight | Lawsuit concerns</li>
+                <li>✅ <strong>CRWD (~$450)</strong> - Bullish divergence holding | Analyst target $506 still in play</li>
+                <li>✅ <strong>UBER ($77.90+)</strong> - Strong momentum on robotaxi catalyst | Could break $80 tomorrow</li>
+                <li><strong>Market Headwind:</strong> Iran tensions pushing crude higher, VIX up 4%, S&P 500 -0.31%</li>
+                <li><strong>Market Opportunity:</strong> Small caps (Russell 2000) +0.81% - risk appetite still present despite VIX spike</li>
             </ul>
         </div>
 
-        <div style="margin-top: 20px; color: #888; font-size: 12px;">
+        <div style="margin-top: 30px; color: #888; font-size: 12px;">
             <div>Last Updated: 2026-03-18 12:30 PST</div>
             <div>Next Refresh: 2026-03-18 16:00 PST (Market Close Summary)</div>
-            <div>Cache buster: 20260318123000</div>
+            <div>Data Source: Web Market Data | Cache buster: 20260318123000</div>
         </div>
     </div>
 </body>

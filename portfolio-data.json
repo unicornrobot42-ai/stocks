@@ -1,0 +1,77 @@
+{
+  "timestamp": "2026-03-05T21:43:51.869845",
+  "portfolio": {
+    "NFLX": {
+      "shares": 3,
+      "entry": 97.67,
+      "current": 99.16999816894531,
+      "invested": 293.01,
+      "current_value": 297.50999450683594,
+      "gain_loss": 4.499994506835947,
+      "gain_pct": 1.5357818869103261
+    },
+    "TMDX": {
+      "shares": 2,
+      "entry": 143.72,
+      "current": 140.07000732421875,
+      "invested": 287.44,
+      "current_value": 280.1400146484375,
+      "gain_loss": -7.299985351562498,
+      "gain_pct": -2.5396553547044594
+    },
+    "MRVL": {
+      "shares": 3,
+      "entry": 77.83,
+      "current": 75.68000030517578,
+      "invested": 233.49,
+      "current_value": 227.04000091552734,
+      "gain_loss": -6.449999084472665,
+      "gain_pct": -2.7624305471209323
+    },
+    "AMZN": {
+      "shares": 1,
+      "entry": 256.18,
+      "current": 218.94000244140625,
+      "invested": 256.18,
+      "current_value": 218.94000244140625,
+      "gain_loss": -37.23999755859376,
+      "gain_pct": -14.53665296221163
+    },
+    "UBER": {
+      "shares": 4,
+      "entry": 77.54,
+      "current": 75.44000244140625,
+      "invested": 310.16,
+      "current_value": 301.760009765625,
+      "gain_loss": -8.399990234375025,
+      "gain_pct": -2.708276449050498
+    },
+    "COIN": {
+      "shares": 1,
+      "entry": 210.1,
+      "current": 205.7100067138672,
+      "invested": 210.1,
+      "current_value": 205.7100067138672,
+      "gain_loss": -4.389993286132807,
+      "gain_pct": -2.089478003870922
+    },
+    "ROKU": {
+      "shares": 1,
+      "entry": 7.14,
+      "current": 98.11000061035156,
+      "call_strike": 101,
+      "type": "call",
+      "invested": 714.0,
+      "current_value": 300.0,
+      "gain_loss": -414.0,
+      "gain_pct": -57.98319327731093
+    }
+  },
+  "summary": {
+    "total_invested": 1590.38,
+    "total_current": 1531.1000289916992,
+    "total_gain_loss": -59.27997100830089,
+    "total_gain_pct": -3.7274092360505593,
+    "positions": 6
+  }
+}

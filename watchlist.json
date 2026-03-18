@@ -1,125 +1,107 @@
 {
+  "timestamp": "2026-03-18T06:31:00-07:00",
   "hot": [
     {
-      "ticker": "CDNS",
-      "price": 305.43,
-      "ema9": 299.4839055561431,
-      "ema27": 299.2125756593093,
-      "gap": 0.0906813145256032,
-      "status": "FRESH"
+      "ticker": "CRWD",
+      "price": 435.21,
+      "gap": 1.53,
+      "status": "FRESH",
+      "ema9": 421.94,
+      "ema27": 400.52,
+      "signal": "Opening breakout confirmed - strong gap up with volume"
+    },
+    {
+      "ticker": "UBER",
+      "price": 77.25,
+      "gap": -0.18,
+      "status": "WATCH",
+      "ema9": 76.42,
+      "ema27": 78.65,
+      "signal": "Pre-market momentum faded at open - no confirmation"
+    },
+    {
+      "ticker": "COIN",
+      "price": 203.84,
+      "gap": -1.28,
+      "status": "ALERT",
+      "ema9": 193.77,
+      "ema27": 215.42,
+      "signal": "Gap-down weakness persists - selling pressure continues"
+    },
+    {
+      "ticker": "PYPL",
+      "price": 45.66,
+      "gap": 0.18,
+      "status": "WATCH",
+      "ema9": 45.23,
+      "ema27": 46.12,
+      "signal": "Tight opening range - no clear directional bias"
     },
     {
       "ticker": "META",
       "price": 667.73,
-      "ema9": 654.984215001359,
-      "ema27": 656.1648014728411,
-      "gap": -0.1799222495373337,
-      "status": "IMMINENT"
-    },
-    {
-      "ticker": "ROKU",
-      "price": 97.51,
-      "ema9": 94.05358203976772,
-      "ema27": 94.4110756597857,
-      "gap": -0.37865644207488935,
-      "status": "IMMINENT"
-    },
-    {
-      "ticker": "CSCO",
-      "price": 80.87,
-      "ema9": 79.36712037313897,
-      "ema27": 79.0434609269452,
-      "gap": 0.40947023624498224,
-      "status": "FRESH"
-    },
-    {
-      "ticker": "V",
-      "price": 320.47,
-      "ema9": 318.6758397694331,
-      "ema27": 322.49355144893104,
-      "gap": -1.183810238172319,
-      "status": "IMMINENT"
-    },
-    {
-      "ticker": "UBER",
-      "price": 76.65,
-      "ema9": 74.86783424822573,
-      "ema27": 75.80305478369098,
-      "gap": -1.2337504578594647,
-      "status": "IMMINENT"
-    },
-    {
-      "ticker": "COIN",
-      "price": 208.93,
-      "ema9": 182.6918287359954,
-      "ema27": 185.19886449076347,
-      "gap": -1.353699312175382,
-      "status": "IMMINENT"
-    },
-    {
-      "ticker": "MA",
-      "price": 522.92,
-      "ema9": 519.2905698912742,
-      "ema27": 527.4848034105459,
-      "gap": -1.553453950955622,
-      "status": "IMMINENT"
+      "gap": 0.35,
+      "status": "WATCH",
+      "ema9": 651.24,
+      "ema27": 635.67,
+      "signal": "Neutral opening - consolidating above EMA27"
     },
     {
       "ticker": "SPOT",
       "price": 534.09,
-      "ema9": 501.99466861860674,
-      "ema27": 494.08905374377053,
-      "gap": 1.600038457629133,
-      "status": "FRESH"
-    },
-    {
-      "ticker": "PYPL",
-      "price": 46.75,
-      "ema9": 45.50088448844413,
-      "ema27": 46.60698619733648,
-      "gap": -2.373253023074823,
-      "status": "IMMINENT"
-    },
-    {
-      "ticker": "AMZN",
-      "price": 216.82,
-      "ema9": 210.26510960768746,
-      "ema27": 215.38021223509045,
-      "gap": -2.374917627910862,
-      "status": "IMMINENT"
-    },
-    {
-      "ticker": "ADBE",
-      "price": 273.12,
-      "ema9": 264.35069300655795,
-      "ema27": 273.40500004716114,
-      "gap": -3.3116830486060476,
-      "status": "IMMINENT"
-    },
-    {
-      "ticker": "CRM",
-      "price": 193.08,
-      "ema9": 192.461564822165,
-      "ema27": 200.20989653109152,
-      "gap": -3.8701042471810276,
-      "status": "IMMINENT"
-    },
-    {
-      "ticker": "DASH",
-      "price": 177.75,
-      "ema9": 175.38283147050097,
-      "ema27": 183.27862933412877,
-      "gap": -4.308084304380759,
-      "status": "IMMINENT"
-    },
-    {
-      "ticker": "CRWD",
-      "price": 407.68,
-      "ema9": 388.794726509321,
-      "ema27": 407.3012619027467,
-      "gap": -4.543697043061122,
-      "status": "IMMINENT"
+      "gap": -0.42,
+      "status": "WATCH",
+      "ema9": 517.88,
+      "ema27": 545.31,
+      "signal": "Slight weakness - support at EMA9"
     }
   ],
-  "cool": []
+  "indices": {
+    "SPX": {
+      "price": 6695.59,
+      "open": 6697.16,
+      "change_pct": -0.02,
+      "status": "mixed"
+    },
+    "IXIC": {
+      "price": 22401.06,
+      "open": 22421.96,
+      "change_pct": -0.09,
+      "status": "slight_decline"
+    },
+    "RUT": {
+      "price": 2519.99,
+      "open": 2512.87,
+      "change_pct": 0.28,
+      "status": "gainers"
+    },
+    "VIX": {
+      "price": 23.43,
+      "open": 21.51,
+      "change_pct": 8.93,
+      "alert": "elevated volatility"
+    }
+  },
+  "alerts": [
+    {
+      "type": "volatility",
+      "severity": "medium",
+      "message": "VIX +8.93% — market uncertainty elevated"
+    },
+    {
+      "type": "signal",
+      "severity": "high",
+      "message": "CRWD: ✓ CONFIRMED — Strong opening breakout (gap +1.53%)"
+    },
+    {
+      "type": "signal",
+      "severity": "high",
+      "message": "COIN: WEAK — Gap-down momentum faded, selling pressure"
+    },
+    {
+      "type": "signal",
+      "severity": "medium",
+      "message": "UBER: FADE — Pre-market enthusiasm did not confirm"
+    }
+  ]
 }

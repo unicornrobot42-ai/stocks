@@ -1,0 +1,52 @@
+{
+  "timestamp": "2026-03-18T05:03:54.404654-07:00",
+  "indices": {
+    "S&P 500": {
+      "price": 6716.09,
+      "change": 16.71,
+      "pct": 0.25
+    },
+    "Nasdaq": {
+      "price": 22479.53,
+      "change": 105.35,
+      "pct": 0.47
+    },
+    "Russell 2000": {
+      "price": 2519.99,
+      "change": 16.7,
+      "pct": 0.67
+    },
+    "VIX": {
+      "price": 21.88,
+      "change": -0.49,
+      "pct": -2.19
+    }
+  },
+  "signals": {
+    "momentum_up": 3,
+    "volume_surge": 2,
+    "watchlist_total": 15
+  },
+  "top_movers": [
+    {
+      "ticker": "UBER",
+      "change": 4.19,
+      "signal": "Momentum Up + Volume Surge 2.07x"
+    },
+    {
+      "ticker": "COIN",
+      "change": 3.4,
+      "signal": "Momentum Up"
+    },
+    {
+      "ticker": "CRWD",
+      "change": 2.21,
+      "signal": "Momentum Up"
+    },
+    {
+      "ticker": "PYPL",
+      "change": -1.34,
+      "signal": "Volume Surge 1.51x"
+    }
+  ]
+}
